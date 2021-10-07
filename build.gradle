@@ -1,0 +1,32 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation (
+            "com.codeborne:selenide:5.24.4",
+            "org.assertj:assertj-core:3.21.0",
+            "com.codeborne:pdf-test:1.6.1",
+            "com.codeborne:xls-test:1.4.3",
+            "net.lingala.zip4j:zip4j:2.9.0",
+            "org.apache.poi:poi:5.0.0",
+            "com.opencsv:opencsv:5.5.2",
+            "org.junit.jupiter:junit-jupiter:5.8.1")
+    testRuntimeOnly (
+            "org.junit.jupiter:junit-jupiter-engine:5.8.1",
+            "org.slf4j:slf4j-simple:1.7.32")
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
+test {
+    useJUnitPlatform()
+}
