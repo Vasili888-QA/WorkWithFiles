@@ -5,6 +5,7 @@ import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.LocalFileHeader;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FilesTests {
 
     @Test
+    @DisplayName("Check file excel")
     void excelFileTest() throws Exception {
           try (InputStream stream = getClass().getClassLoader().getResourceAsStream("ExampleExcel.xlsx")) {
               assert stream != null;
@@ -30,6 +32,7 @@ public class FilesTests {
     }
 
     @Test
+    @DisplayName("Check file .txt")
     void txtFileTest() throws Exception {
         String result;
         try (InputStream stream = getClass().getClassLoader().getResourceAsStream("ExampleTXTFile.txt")) {
@@ -41,6 +44,7 @@ public class FilesTests {
     }
 
     @Test
+    @DisplayName("Check file .pdf")
     void pdfFileTest() throws Exception {
         PDF parsed = new PDF(getClass().getClassLoader().getResource("ExamplePDFFile.pdf"));
         assertThat(parsed.author).contains("Michael Sorens");
@@ -51,6 +55,7 @@ public class FilesTests {
 
 
     @Test
+    @DisplayName("Check file .docx")
     void docxFileTest() throws Exception {
         File docxFile = new File("src/test/resources/ExampleWord.docx");
         try (FileInputStream stream = new FileInputStream(docxFile)) {
@@ -62,6 +67,7 @@ public class FilesTests {
     }
 
     @Test
+    @DisplayName("Check file .zip")
     void zipArchiveTest() throws Exception {
         ZipFile zipFile = new ZipFile("src/test/resources/WorkWithFiles.zip");
         LocalFileHeader localFileHeader;
