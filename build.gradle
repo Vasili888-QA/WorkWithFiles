@@ -1,39 +1,33 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 repositories {
     mavenCentral()
 }
 
-compileTestJava {
-    options.encoding = 'UTF-8'
-}
-
-
-sourceCompatibility = 11
-targetCompatibility = 11
-
-
 dependencies {
-    // Selenide
-    testImplementation("com.codeborne:selenide:5.21.0")
-    testRuntimeOnly("org.slf4j:slf4j-simple:1.7.30")
-
-    // JUnit 5
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
-
-    //work with files
-    testImplementation(
+    testImplementation (
+            "com.codeborne:selenide:5.24.4",
+            "org.assertj:assertj-core:3.21.0",
             "com.codeborne:pdf-test:1.6.1",
             "com.codeborne:xls-test:1.4.3",
+            "net.lingala.zip4j:zip4j:2.9.0",
+            //don't change this version 3.9
             "org.apache.poi:poi:3.9",
-            "com.opencsv:opencsv:5.3",
-            "org.assertj:assertj-core:3.19.0",
-            "net.lingala.zip4j:zip4j:2.9.0")
+            "com.opencsv:opencsv:5.5.2",
+            "org.junit.jupiter:junit-jupiter:5.8.1")
+    testRuntimeOnly (
+            "org.junit.jupiter:junit-jupiter-engine:5.8.1",
+            "org.slf4j:slf4j-simple:1.7.32")
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = 11
+    targetCompatibility = 11
 }
 
 test {
-    useJUnitPlatform{}
+    useJUnitPlatform()
 }
